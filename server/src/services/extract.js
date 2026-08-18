@@ -95,7 +95,7 @@ export async function extractInvoiceData(filePath, mimeType) {
 
 Dutch BTW (VAT) rates are normally 21% (standard) or 9% (reduced, e.g. food, books). Some documents show 0% or are BTW-exempt (btw_rate: 0). If only the total is shown and BTW is not itemized, infer amount_excl_btw and btw_amount from the total and the most likely rate. Amounts must use "." as the decimal separator regardless of how they appear on the document.
 
-Categorize the expense into exactly one of: Supplies, Rent, Salaries, Utilities, Marketing, Travel, Software. Pick the closest match.`,
+Categorize the expense into exactly one of: Kantoorbenodigdheden, Huur, Salarissen, Nutsvoorzieningen, Marketing, Reiskosten, Software. Pick the closest match.`,
           },
         ],
       },

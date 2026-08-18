@@ -26,7 +26,7 @@ const upload = multer({
   limits: { fileSize: 20 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     if (!ALLOWED_MIME_TYPES.has(file.mimetype)) {
-      return cb(new Error('Only PDF, JPG and PNG files are allowed'));
+      return cb(new Error('Alleen PDF, JPG en PNG bestanden zijn toegestaan'));
     }
     cb(null, true);
   },
@@ -36,7 +36,7 @@ const router = express.Router();
 
 router.post('/upload', upload.single('file'), async (req, res) => {
   if (!req.file) {
-    return res.status(400).json({ error: 'No file uploaded' });
+    return res.status(400).json({ error: 'Geen bestand geüpload' });
   }
 
   const { filename: stored_filename, originalname: original_filename, mimetype } = req.file;
@@ -49,7 +49,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       mimetype
     );
   } catch (err) {
-    extraction_error = err.message || 'Extraction failed';
+    extraction_error = err.message || 'Extractie mislukt';
   }
 
   const stmt = db.prepare(`
@@ -103,7 +103,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const invoice = db.prepare('SELECT * FROM invoices WHERE id = ?').get(req.params.id);
-  if (!invoice) return res.status(404).json({ error: 'Invoice not found' });
+  if (!invoice) return res.status(404).json({ error: 'Factuur niet gevonden' });
   res.json(invoice);
 });
 
@@ -122,7 +122,7 @@ router.put('/:id', (req, res) => {
   if (!existing) return res.status(404).json({ error: 'Invoice not found' });
 
   if (req.body.category && !CATEGORIES.includes(req.body.category)) {
-    return res.status(400).json({ error: `Invalid category. Must be one of: ${CATEGORIES.join(', ')}` });
+    return res.status(400).json({ error: `Ongeldige categorie. Moet een van de volgende zijn: ${CATEGORIES.join(', ')}` });
   }
 
   const updates = {};

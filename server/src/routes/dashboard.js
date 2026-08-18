@@ -24,7 +24,7 @@ router.get('/summary', (req, res) => {
   );
 
   for (const row of rows) {
-    const key = row.category && CATEGORIES.includes(row.category) ? row.category : 'Uncategorized';
+    const key = row.category && CATEGORIES.includes(row.category) ? row.category : 'Geen categorie';
     byCategory[key] = {
       total_excl_btw: row.total_excl_btw || 0,
       total_btw: row.total_btw || 0,

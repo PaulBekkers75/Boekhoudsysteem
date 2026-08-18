@@ -64,8 +64,8 @@ export default function UploadPage() {
         onDrop={onDrop}
         onClick={() => inputRef.current?.click()}
       >
-        <p>Drag &amp; drop invoices or receipts here, or click to select</p>
-        <p className="hint">Accepts PDF, JPG, PNG</p>
+        <p>Sleep facturen of bonnetjes hierheen, of klik om te selecteren</p>
+        <p className="hint">Ondersteunt PDF, JPG, PNG</p>
         <input
           ref={inputRef}
           type="file"
@@ -84,18 +84,18 @@ export default function UploadPage() {
           {items.map((item) => (
             <li key={item.id} className={`upload-item ${item.status}`}>
               <div className="upload-item-name">{item.file.name}</div>
-              {item.status === 'uploading' && <div className="upload-item-status">Reading with Claude…</div>}
+              {item.status === 'uploading' && <div className="upload-item-status">Wordt gelezen met Claude…</div>}
               {item.status === 'error' && (
                 <div className="upload-item-status error">
-                  {item.error || 'Upload failed'}
-                  {item.result && ' — saved, please fill in the details manually on the Dashboard.'}
+                  {item.error || 'Uploaden mislukt'}
+                  {item.result && ' — opgeslagen, vul de gegevens handmatig aan op het dashboard.'}
                 </div>
               )}
               {item.status === 'done' && item.result && (
                 <div className="upload-item-summary">
-                  <span>{item.result.vendor || 'Unknown vendor'}</span>
+                  <span>{item.result.vendor || 'Onbekende leverancier'}</span>
                   <span>{item.result.invoice_date || '—'}</span>
-                  <span>{item.result.category || 'Uncategorized'}</span>
+                  <span>{item.result.category || 'Geen categorie'}</span>
                   <span>{formatCurrency(item.result.total_amount)}</span>
                 </div>
               )}

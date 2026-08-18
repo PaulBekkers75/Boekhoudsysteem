@@ -33,11 +33,11 @@ db.exec(`
 `);
 
 export const CATEGORIES = [
-  'Supplies',
-  'Rent',
-  'Salaries',
-  'Utilities',
+  'Kantoorbenodigdheden',
+  'Huur',
+  'Salarissen',
+  'Nutsvoorzieningen',
   'Marketing',
-  'Travel',
+  'Reiskosten',
   'Software',
 ];

@@ -56,18 +56,18 @@ export default function EditInvoiceModal({ invoice, onSave, onClose }) {
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <h2>Edit invoice</h2>
+        <h2>Factuur bewerken</h2>
         <form onSubmit={submit}>
           <label>
-            Date
+            Datum
             <input type="date" value={form.invoice_date || ''} onChange={update('invoice_date')} />
           </label>
           <label>
-            Vendor
+            Leverancier
             <input type="text" value={form.vendor} onChange={update('vendor')} />
           </label>
           <label>
-            Category
+            Categorie
             <select value={form.category} onChange={update('category')}>
               {CATEGORIES.map((c) => (
                 <option key={c} value={c}>
@@ -78,11 +78,11 @@ export default function EditInvoiceModal({ invoice, onSave, onClose }) {
           </label>
           <div className="form-row">
             <label>
-              Amount excl. BTW
+              Bedrag excl. BTW
               <input type="number" step="0.01" value={form.amount_excl_btw} onChange={update('amount_excl_btw')} onBlur={recalcBtwFromRate} />
             </label>
             <label>
-              BTW rate (%)
+              BTW-tarief (%)
               <select value={form.btw_rate} onChange={update('btw_rate')} onBlur={recalcBtwFromRate}>
                 <option value="">—</option>
                 <option value="21">21%</option>
@@ -93,11 +93,11 @@ export default function EditInvoiceModal({ invoice, onSave, onClose }) {
           </div>
           <div className="form-row">
             <label>
-              BTW amount
+              BTW-bedrag
               <input type="number" step="0.01" value={form.btw_amount} onChange={update('btw_amount')} onBlur={recalcTotal} />
             </label>
             <label>
-              Total amount
+              Totaalbedrag
               <input type="number" step="0.01" value={form.total_amount} onChange={update('total_amount')} />
             </label>
           </div>
@@ -106,10 +106,10 @@ export default function EditInvoiceModal({ invoice, onSave, onClose }) {
 
           <div className="modal-actions">
             <button type="button" className="btn secondary" onClick={onClose} disabled={saving}>
-              Cancel
+              Annuleren
             </button>
             <button type="submit" className="btn primary" disabled={saving}>
-              {saving ? 'Saving…' : 'Save'}
+              {saving ? 'Opslaan…' : 'Opslaan'}
             </button>
           </div>
         </form>

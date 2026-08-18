@@ -5,7 +5,7 @@ function formatCurrency(value) {
 
 export default function InvoiceTable({ invoices, onEdit, onDelete }) {
   if (invoices.length === 0) {
-    return <p className="empty-state">No invoices for this month yet.</p>;
+    return <p className="empty-state">Nog geen facturen voor deze maand.</p>;
   }
 
   return (
@@ -13,13 +13,13 @@ export default function InvoiceTable({ invoices, onEdit, onDelete }) {
       <table>
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Vendor</th>
-            <th>Category</th>
+            <th>Datum</th>
+            <th>Leverancier</th>
+            <th>Categorie</th>
             <th>Excl. BTW</th>
             <th>BTW</th>
-            <th>Total</th>
-            <th>File</th>
+            <th>Totaal</th>
+            <th>Bestand</th>
             <th></th>
           </tr>
         </thead>
@@ -29,7 +29,7 @@ export default function InvoiceTable({ invoices, onEdit, onDelete }) {
               <td>{inv.invoice_date || '—'}</td>
               <td>{inv.vendor || '—'}</td>
               <td>
-                <span className="category-badge">{inv.category || 'Uncategorized'}</span>
+                <span className="category-badge">{inv.category || 'Geen categorie'}</span>
               </td>
               <td>{formatCurrency(inv.amount_excl_btw)}</td>
               <td>
@@ -41,15 +41,15 @@ export default function InvoiceTable({ invoices, onEdit, onDelete }) {
               <td>{formatCurrency(inv.total_amount)}</td>
               <td>
                 <a href={`/uploads/${inv.stored_filename}`} target="_blank" rel="noreferrer">
-                  view
+                  bekijken
                 </a>
               </td>
               <td className="actions">
                 <button className="btn small" onClick={() => onEdit(inv)}>
-                  Edit
+                  Bewerken
                 </button>
                 <button className="btn small danger" onClick={() => onDelete(inv)}>
-                  Delete
+                  Verwijderen
                 </button>
               </td>
             </tr>

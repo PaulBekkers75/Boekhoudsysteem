@@ -42,7 +42,7 @@ export default function DashboardPage() {
   }, [load]);
 
   const handleDelete = async (invoice) => {
-    if (!window.confirm(`Delete invoice from ${invoice.vendor || 'unknown vendor'}?`)) return;
+    if (!window.confirm(`Factuur van ${invoice.vendor || 'onbekende leverancier'} verwijderen?`)) return;
     try {
       await deleteInvoice(invoice.id);
       load();
@@ -61,11 +61,11 @@ export default function DashboardPage() {
     <div className="dashboard-page">
       <div className="dashboard-toolbar">
         <label>
-          Month
+          Maand
           <input type="month" value={month} onChange={(e) => setMonth(e.target.value)} />
         </label>
         <a className="btn primary" href={exportUrl(month)}>
-          Export to Excel
+          Exporteren naar Excel
         </a>
       </div>
 
@@ -75,35 +75,35 @@ export default function DashboardPage() {
         <>
           <div className="summary-cards">
             <div className="card highlight">
-              <div className="card-label">Total expenses (excl. BTW)</div>
+              <div className="card-label">Totale uitgaven (excl. BTW)</div>
               <div className="card-value">{formatCurrency(summary.totals.total_excl_btw)}</div>
             </div>
             <div className="card highlight">
-              <div className="card-label">BTW to reclaim</div>
+              <div className="card-label">Terug te vragen BTW</div>
               <div className="card-value">{formatCurrency(summary.totals.total_btw)}</div>
             </div>
             <div className="card highlight">
-              <div className="card-label">Total incl. BTW</div>
+              <div className="card-label">Totaal incl. BTW</div>
               <div className="card-value">{formatCurrency(summary.totals.total_incl_btw)}</div>
             </div>
           </div>
 
-          <h3>By category</h3>
+          <h3>Per categorie</h3>
           <div className="category-cards">
             {Object.entries(summary.byCategory).map(([category, data]) => (
               <div className="card" key={category}>
                 <div className="card-label">{category}</div>
                 <div className="card-value">{formatCurrency(data.total_excl_btw)}</div>
-                <div className="card-sub">{data.count} invoice{data.count === 1 ? '' : 's'}</div>
+                <div className="card-sub">{data.count} factu{data.count === 1 ? 'ur' : 'ren'}</div>
               </div>
             ))}
           </div>
         </>
       )}
 
-      <h3>Invoices</h3>
+      <h3>Facturen</h3>
       {loading ? (
-        <p>Loading…</p>
+        <p>Laden…</p>
       ) : (
         <InvoiceTable invoices={invoices} onEdit={setEditing} onDelete={handleDelete} />
       )}

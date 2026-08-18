@@ -20,7 +20,7 @@ export default function App() {
             className={tab === 'upload' ? 'tab active' : 'tab'}
             onClick={() => setTab('upload')}
           >
-            Upload
+            Uploaden
           </button>
         </nav>
       </header>
